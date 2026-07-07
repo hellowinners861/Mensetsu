@@ -14,8 +14,9 @@
 ## 使い方（友達に渡すとき）
 
 **方法1：URLを送る（一番かんたん）**
-共有Webページ 👉 https://claude.ai/code/artifact/1f2ea6c5-c45d-4f96-927a-49d973feb690
+共有Webページ（GitHub Pages）👉 https://hellowinners861.github.io/mensetsu/
 リンクを開いて「コピー」→ 好きなAIに貼るだけ。
+※ このブランチへのプッシュで GitHub Actions（`.github/workflows/deploy-pages.yml`）が自動デプロイします。
 
 **方法2：ファイルを渡す**
 `面接準備プロンプト.md` の指示文をコピーして、AIの最初のメッセージに貼り付け。
