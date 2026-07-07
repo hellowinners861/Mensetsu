@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深掘り耐性テスト｜面接準備キット</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔍%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="col">
+  <a class="back-link" href="index.html">← 準備キットのトップへ</a>
+
+  <p class="eyebrow">追加プロンプト</p>
+  <h1>深掘り耐性テスト</h1>
+  <p class="lead">用意した回答をAIに渡すと、面接官がしそうな「追い質問」を弱点を突く順に洗い出し、答え方の方針まで示してくれます。回答の穴を事前に埋めるためのツールです。</p>
+
+  <div class="prompt-card" style="margin-top:24px">
+    <div class="prompt-head">
+      <span class="label">全文コピー →  好きなAIへ貼り付け</span>
+      <button class="copy-btn" data-target="promptText" type="button">コピー</button>
+    </div>
+    <pre class="prompt" id="promptText">あなたは、研修医マッチング面接の面接官で、特に「深掘り（追い質問）」が得意な人です。
+
+■ やってほしいこと
+1. 私が用意した回答（自己PRや志望理由など）を1つ貼ります。
+2. あなたはその回答に対して、面接官がしそうな深掘り質問を「弱点を突く順」に5つ挙げてください。
+   例：「具体的なエピソードは？」「それは他の人でも言えるのでは？」「その短所は業務にどう影響する？」「なぜ数ある病院の中でうち？」「その経験から何を学び、どう活かす？」
+3. それぞれの質問について、私がどう答えるべきかの「模範の方向性」を1〜2行で添えてください（丸暗記用の原稿ではなく、方針として）。
+4. 最後に、その回答の「一番突っ込まれやすい弱点」を1つと、先に手を打つための改善案を教えてください。
+
+まずは「回答をどうぞ」と私に促してください。私が回答を貼ったら、上の1〜4を行ってください。複数の回答を続けて渡すこともあります。</pre>
+  </div>
+  <p class="note">※ 1回答ずつ渡すと精度が上がります。メインのプロンプトで作った回答を、そのまま貼るのがおすすめです。</p>
+
+  <footer>
+    <p class="big">突っ込まれる前に、自分で突っ込んでおく。</p>
+  </footer>
+</div>
+<script src="copy.js"></script>
+</body>
+</html>

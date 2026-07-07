@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模擬面接モード｜面接準備キット</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎤%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="col">
+  <a class="back-link" href="index.html">← 準備キットのトップへ</a>
+
+  <p class="eyebrow">追加プロンプト</p>
+  <h1>模擬面接モード</h1>
+  <p class="lead">AIが面接官役になり、本番さながらに質問→深掘り→フィードバックをしてくれます。標準・圧迫・和やかの3モード付き。下のプロンプトをコピーして、好きなAIに貼ってください。</p>
+
+  <div class="prompt-card" style="margin-top:24px">
+    <div class="prompt-head">
+      <span class="label">全文コピー →  好きなAIへ貼り付け</span>
+      <button class="copy-btn" data-target="promptText" type="button">コピー</button>
+    </div>
+    <pre class="prompt" id="promptText">あなたは、研修医マッチング（病院採用面接）の面接官です。これから私に模擬面接を行ってください。
+
+■ 進め方
+1. 最初に私へ「志望科・受ける病院・部活/打ち込んだこと」を一言で確認する（ここは手短に）。
+2. その後、面接官として質問を1問ずつ投げてください。私が答えたら、内容に応じて「具体的には？」「なぜ？」「それは仕事にどう活きる？」と2〜3回まで深掘りしてください。
+3. 1つのテーマが終わるごとに、短いフィードバック（良かった点／もっと良くする点）を2〜3行で。
+4. 質問はこの流れで：導入（自己紹介・志望理由）→ 人柄（長所短所）→ 経験（挫折・チーム）→ 医師観 → 医療社会系 → 逆質問。全体で10〜15問。
+5. 面接らしく、あいづちは最小限で淡々と。ただし私が詰まったら助け舟を1回出してください。
+
+■ モード（私が最初に指定します。指定がなければ「標準」で）
+・標準：一般的な面接官のトーン
+・圧迫：速いテンポで矛盾を突く。ただし人格否定はしない
+・和やか：雑談多めでリラックスさせる
+
+■ 最後に総評
+面接が終わったら、次を5点満点で採点しつつまとめてください：
+①内容の強み ②改善点トップ3 ③話し方の癖（「話が長い／結論が後回し／早口」など）
+
+準備ができたら、まず私に「モードと志望科」を聞いてください。私が「標準モードで、自己紹介から始めてください」のように言ったら開始してください。</pre>
+  </div>
+  <p class="note">※ このページはメインの回答づくりとは別物です。ある程度回答を用意してから使うと効果的です。</p>
+
+  <footer>
+    <p class="big">場数を踏むほど、本番の緊張は小さくなります。</p>
+  </footer>
+</div>
+<script src="copy.js"></script>
+</body>
+</html>

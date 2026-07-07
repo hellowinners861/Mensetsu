@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>併願整合チェック｜面接準備キット</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧭%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="col">
+  <a class="back-link" href="index.html">← 準備キットのトップへ</a>
+
+  <p class="eyebrow">追加プロンプト</p>
+  <h1>併願整合チェック</h1>
+  <p class="lead">複数病院の志望理由・進路の答えをまとめて渡すと、面接で矛盾しそうな箇所（例：ある病院で「東京で働きたい」、別の病院で「地元に残る」）を洗い出し、切り返し案まで示してくれます。</p>
+
+  <div class="prompt-card" style="margin-top:24px">
+    <div class="prompt-head">
+      <span class="label">全文コピー →  好きなAIへ貼り付け</span>
+      <button class="copy-btn" data-target="promptText" type="button">コピー</button>
+    </div>
+    <pre class="prompt" id="promptText">あなたは、研修医マッチング面接に詳しいアドバイザーです。私が受ける複数の病院それぞれの「志望理由」や「将来像」の答えを貼るので、面接で矛盾・不整合が出ないかをチェックしてください。
+
+■ 私が貼る内容
+・受ける病院それぞれの「志望理由」
+・「後期研修／進路（どこで働き続けたいか）」
+・「志望科」
+・（あれば）「地域医療・地元についての答え」
+
+■ チェックしてほしい観点
+1. 病院間で志望理由が使い回しの一般論になっていないか（各病院ならではの理由になっているか）。
+2. 「この地域で働き続けたい」系の発言が、他病院の答えと矛盾していないか（例：A病院で『東京で働きたい』、B病院で『地元の千葉に骨を埋める』など）。
+3. 志望科と各病院の強みがちぐはぐでないか。
+4. 「併願病院を聞かれたとき」に、正直かつ角が立たない説明になっているか。
+
+■ 出力
+・矛盾／リスクのある箇所を「どの病院とどの病院が、どう食い違うか」で具体的に指摘。
+・それぞれに、面接で突かれたときの切り返し案を1つずつ。
+・全体を一貫させるための調整方針を最後にまとめて。
+
+まずは私に「各病院の答えを貼ってください」と促してください。</pre>
+  </div>
+  <p class="note">※ 5病院ぶんをまとめて貼ると、全体の一貫性を見てくれます。メインのプロンプトで「病院別」を作り終えてから使うのがおすすめです。</p>
+
+  <footer>
+    <p class="big">5つの物語を、1本の芯に。</p>
+  </footer>
+</div>
+<script src="copy.js"></script>
+</body>
+</html>
