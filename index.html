@@ -129,6 +129,24 @@
     font-size:.9rem;color:var(--ink-faint);margin:14px 2px 0;
   }
 
+  /* ---- downloads ---- */
+  .dl-row{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 18px}
+  .dl-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--sans);font-size:.95rem;font-weight:700;text-decoration:none;
+    color:var(--ink);background:var(--surface);
+    border:1px solid var(--line);border-radius:11px;
+    padding:13px 20px;box-shadow:var(--shadow);
+    transition:transform .12s ease,border-color .2s ease;
+  }
+  .dl-btn:hover{transform:translateY(-1px);border-color:var(--teal)}
+  .dl-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .dl-btn .ext{
+    font-family:var(--serif);font-size:.72rem;font-weight:700;letter-spacing:.04em;
+    color:#fff;background:var(--teal);border-radius:6px;padding:3px 7px;
+  }
+  .dl-btn small{display:block;font-weight:400;color:var(--ink-faint);font-size:.78rem;margin-top:1px}
+
   /* ---- question bank ---- */
   details.cat{
     background:var(--surface);border:1px solid var(--line);border-radius:12px;
@@ -181,7 +199,7 @@
 
     <hr class="rule">
 
-    <h2>使い方は3ステップ</h2>
+    <h2>使い方</h2>
     <ol class="steps">
       <li>
         <div><b>プロンプトをコピー</b><p>下のカードの「コピー」を押して、指示文まるごとをコピーします。</p></div>
@@ -191,6 +209,9 @@
       </li>
       <li>
         <div><b>1問ずつ答えていく</b><p>AIが質問を出すので、キーワード程度で回答。AIが3列の回答集に仕上げてくれます。</p></div>
+      </li>
+      <li>
+        <div><b>Excel / Word にまとめる</b><p>回答がたまったらAIに「まとめて」と送信。テンプレートに貼るだけで完成します。</p></div>
       </li>
     </ol>
 
@@ -247,9 +268,32 @@ E. 医療・社会系：医師の地域偏在、診療科偏在、働き方改�
 F. 病院別（各病院ごと）：志望理由、見学の印象・魅力／特徴、病院の役割・地域での位置づけ、市中病院を選ぶ理由、併願病院とその中でここが良い点、後期研修・進路、採用するメリット、改善してほしい点・弱点、最後に一言
 G. 締め・その他：最近の一般ニュース、最近読んだ本、逆質問の準備、家族構成・健康状態など事務確認
 
+■ 最後のまとめ出力（Excel / Word 用）
+私が「まとめて」と言ったら、それまでに作った回答を全部、次の形で書き出してください：
+1. Excel用：シートごと（共通／医療・社会系／病院ごと）にタブ区切り（TSV）で。各ブロックの1行目は見出し「質問（タブ）回答（タブ）深掘り・想定追撃への返し」。→ Excelのセルに貼るだけで3列に収まります。
+2. Word用：同じ内容を、セクション見出し＋3列の表（Markdown）で。
+3. あなた（AI）がファイル生成に対応していれば、そのまま .xlsx または .docx のダウンロードファイルを作ってください。
+※配布サイトに記入用テンプレート（Excel/Word）もあるので、貼り付け先として使えます。
+
 では、まず私の「土台情報」から、1つずつ聞いてください。</pre>
     </div>
     <p class="note">※ Webページ自体はAIを内蔵していません。「ここでコピー → 好きなAIに貼る」流れなので、どのAIでも同じように使えます。</p>
+
+    <hr class="rule">
+
+    <h2>作った回答を Excel / Word にまとめる</h2>
+    <p class="lead" style="margin-bottom:18px">回答がたまったら、AIに <b>「まとめて」</b> と送ってください。シートごとに <b>Excelへ貼れるTSV</b> や <b>Word用の表</b>で書き出してくれます（ChatGPTのデータ分析・Claudeなら <code>.xlsx</code>/<code>.docx</code> ファイルを直接作れます）。貼り付け先の空テンプレートはこちら👇</p>
+    <div class="dl-row">
+      <a class="dl-btn" href="%E9%9D%A2%E6%8E%A5%E5%9B%9E%E7%AD%94%E9%9B%86_%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.xlsx" download>
+        <span class="ext">XLSX</span>
+        <span>Excelテンプレート<small>共通・医療社会系・病院×5シート／3列</small></span>
+      </a>
+      <a class="dl-btn" href="%E9%9D%A2%E6%8E%A5%E5%9B%9E%E7%AD%94%E9%9B%86_%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.docx" download>
+        <span class="ext">DOCX</span>
+        <span>Wordテンプレート<small>セクション見出し＋3列の表</small></span>
+      </a>
+    </div>
+    <p class="note">Excelは <b>A列のセルを選んでTSVを貼る</b> と3列にきれいに収まります。病院シートは実際の病院名にリネームして使ってください。</p>
 
     <hr class="rule">
 
