@@ -1,0 +1,382 @@
+<style>
+  :root{
+    --ground:#f5f8f7;
+    --surface:#ffffff;
+    --surface-tint:#e9f1ef;
+    --line:#d3e0dc;
+    --ink:#14302c;
+    --ink-soft:#4a615c;
+    --ink-faint:#7d928d;
+    --teal:#0f7d72;
+    --teal-deep:#0b5a52;
+    --warm:#cf5b3d;
+    --warm-soft:#f4e2db;
+    --shadow:0 1px 2px rgba(20,48,44,.05),0 8px 28px -18px rgba(20,48,44,.35);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0d1918;
+      --surface:#152625;
+      --surface-tint:#1b302e;
+      --line:#28403d;
+      --ink:#e7f0ee;
+      --ink-soft:#a7bcb7;
+      --ink-faint:#7a908b;
+      --teal:#3fb6a8;
+      --teal-deep:#5cc9bb;
+      --warm:#ef8c6f;
+      --warm-soft:#33231e;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -20px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#f5f8f7;--surface:#ffffff;--surface-tint:#e9f1ef;--line:#d3e0dc;
+    --ink:#14302c;--ink-soft:#4a615c;--ink-faint:#7d928d;--teal:#0f7d72;--teal-deep:#0b5a52;
+    --warm:#cf5b3d;--warm-soft:#f4e2db;--shadow:0 1px 2px rgba(20,48,44,.05),0 8px 28px -18px rgba(20,48,44,.35);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0d1918;--surface:#152625;--surface-tint:#1b302e;--line:#28403d;
+    --ink:#e7f0ee;--ink-soft:#a7bcb7;--ink-faint:#7a908b;--teal:#3fb6a8;--teal-deep:#5cc9bb;
+    --warm:#ef8c6f;--warm-soft:#33231e;--shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -20px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0}
+  .wrap{
+    --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+    --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular","Menlo",monospace;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    padding:clamp(20px,5vw,64px) clamp(16px,5vw,24px) 72px;
+  }
+  .col{max-width:760px;margin:0 auto}
+
+  /* ---- header ---- */
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--teal-deep);font-weight:700;margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(1.9rem,5.4vw,3rem);line-height:1.28;letter-spacing:.01em;
+    margin:0 0 18px;text-wrap:balance;
+  }
+  .lead{
+    font-size:clamp(1rem,2.4vw,1.12rem);color:var(--ink-soft);
+    margin:0 0 8px;max-width:60ch;
+  }
+  .rule{height:1px;background:var(--line);border:0;margin:36px 0}
+
+  /* ---- steps ---- */
+  h2{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(1.25rem,3.4vw,1.55rem);letter-spacing:.01em;
+    margin:0 0 20px;text-wrap:balance;
+  }
+  .steps{display:flex;flex-direction:column;gap:14px;margin:0 0 8px;padding:0;list-style:none;counter-reset:s}
+  .steps li{
+    display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 20px;box-shadow:var(--shadow);
+  }
+  .steps li::before{
+    counter-increment:s;content:counter(s);
+    font-family:var(--serif);font-size:1.05rem;font-weight:600;
+    width:34px;height:34px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--surface-tint);color:var(--teal-deep);
+    border:1px solid var(--line);
+  }
+  .steps b{font-weight:700}
+  .steps p{margin:2px 0 0;color:var(--ink-soft);font-size:.95rem}
+
+  /* ---- prompt card ---- */
+  .prompt-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .prompt-head{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    padding:16px 18px;border-bottom:1px solid var(--line);background:var(--surface-tint);
+  }
+  .prompt-head .label{font-size:.82rem;color:var(--ink-soft);letter-spacing:.04em}
+  .copy-btn{
+    font-family:var(--sans);font-size:.9rem;font-weight:700;
+    color:#fff;background:var(--warm);border:0;border-radius:9px;
+    padding:9px 18px;cursor:pointer;transition:transform .12s ease,background .2s ease;
+    box-shadow:0 6px 16px -8px var(--warm);
+  }
+  .copy-btn:hover{transform:translateY(-1px)}
+  .copy-btn:active{transform:translateY(0)}
+  .copy-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .copy-btn.done{background:var(--teal)}
+  pre.prompt{
+    margin:0;padding:20px 20px 24px;max-height:340px;overflow:auto;
+    font-family:var(--mono);font-size:.82rem;line-height:1.7;
+    color:var(--ink);white-space:pre-wrap;word-break:break-word;
+    background:var(--surface);
+  }
+  pre.prompt::-webkit-scrollbar{width:10px}
+  pre.prompt::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+
+  .note{
+    font-size:.9rem;color:var(--ink-faint);margin:14px 2px 0;
+  }
+
+  /* ---- question bank ---- */
+  details.cat{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    margin:0 0 10px;overflow:hidden;box-shadow:var(--shadow);
+  }
+  details.cat>summary{
+    cursor:pointer;list-style:none;padding:15px 18px;
+    display:flex;align-items:center;gap:12px;
+    font-weight:700;font-size:1rem;color:var(--ink);
+  }
+  details.cat>summary::-webkit-details-marker{display:none}
+  .tag{
+    font-family:var(--serif);font-size:.85rem;font-weight:600;
+    color:var(--teal-deep);background:var(--surface-tint);
+    border:1px solid var(--line);border-radius:7px;
+    width:30px;height:30px;display:grid;place-items:center;flex:none;
+  }
+  .cnt{margin-left:auto;font-size:.8rem;color:var(--ink-faint);font-weight:600}
+  .chev{transition:transform .2s ease;color:var(--ink-faint);flex:none}
+  details.cat[open] .chev{transform:rotate(90deg)}
+  details.cat ul{
+    margin:0;padding:0 18px 16px 18px;list-style:none;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  details.cat li{
+    padding-left:20px;position:relative;color:var(--ink-soft);font-size:.94rem;line-height:1.6;
+  }
+  details.cat li::before{
+    content:"";position:absolute;left:2px;top:.62em;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--teal);opacity:.55;
+  }
+
+  footer{margin-top:44px;color:var(--ink-faint);font-size:.85rem;line-height:1.7}
+  footer .big{font-family:var(--serif);color:var(--ink-soft);font-size:.95rem}
+
+  @media (max-width:520px){
+    .steps li{grid-template-columns:auto 1fr;padding:16px}
+    .prompt-head{padding:14px}
+  }
+</style>
+
+<div class="wrap">
+  <div class="col">
+
+    <p class="eyebrow">研修医マッチング面接 準備キット</p>
+    <h1>先輩の回答集を、<br>“自分だけの回答集”に変える。</h1>
+    <p class="lead">好きなAI（ChatGPT・Gemini・Claude）に下のプロンプトを貼るだけ。AIが面接質問を1問ずつ出題し、あなたのメモを「面接で言える完成形の回答」に仕上げていきます。</p>
+    <p class="lead">友達にはこのページのURLを送るだけ。同じ手順で、その人だけの回答集が作れます。</p>
+
+    <hr class="rule">
+
+    <h2>使い方は3ステップ</h2>
+    <ol class="steps">
+      <li>
+        <div><b>プロンプトをコピー</b><p>下のカードの「コピー」を押して、指示文まるごとをコピーします。</p></div>
+      </li>
+      <li>
+        <div><b>好きなAIに貼って送信</b><p>ChatGPT / Gemini / Claude の最初のメッセージに貼り付け。（先輩のExcelがあれば一緒に添付するとより正確に）</p></div>
+      </li>
+      <li>
+        <div><b>1問ずつ答えていく</b><p>AIが質問を出すので、キーワード程度で回答。AIが3列の回答集に仕上げてくれます。</p></div>
+      </li>
+    </ol>
+
+    <hr class="rule">
+
+    <h2>コピーして使うプロンプト</h2>
+    <div class="prompt-card">
+      <div class="prompt-head">
+        <span class="label">そのまま全文コピー →  好きなAIへ貼り付け</span>
+        <button class="copy-btn" id="copyBtn" type="button">コピー</button>
+      </div>
+      <pre class="prompt" id="promptText">あなたは、医学部6年生の「研修医マッチング（病院採用面接）」の準備を手伝う、経験豊富な面接対策コーチです。
+これから私（受験生）と一緒に、私だけの面接回答集を作ります。
+
+■ 進め方（最重要ルール）
+1. まず最初に、私の「土台情報」をヒアリングしてください。会話しながら埋めてOKです。
+2. その後は、面接でよく聞かれる質問を必ず1問ずつ出題してください。一度にたくさん聞かないこと。
+3. 私はキーワードや箇条書きなど「メモ程度」で答えます。うまく言葉にできないときは、追加の問いを投げて引き出してください。
+4. 私のメモをもとに、面接で実際に声に出して言える「完成形の回答」に仕上げてください。仕上げる時のルール：
+   ・一般論で終わらせず、私自身のエピソードを主役にする
+   ・30秒〜1分で話せる長さ。結論ファーストで簡潔に
+   ・自己PR・志望系は、最後を必ず「だから御院で〜に貢献したい」と病院への貢献に着地させる
+   ・面接官の深掘り質問（例：「具体的には？」「その短所は仕事にどう影響する？」）への返しも1〜2個そえる
+5. 回答は毎回この3列フォーマットで提示してください：
+   | 質問 | 回答（面接で言う形） | 深掘り・想定追撃への返し |
+6. 1問仕上げるごとに「次の質問にいきますか？／この回答を直しますか？」と確認してください。
+7. ときどき、回答同士でエピソードが被りすぎていないかチェックして教えてください。
+
+■ 最初に聞く「土台情報」
+・受ける病院（最大5つ。病院名／見学に行ったか）
+・学生時代に打ち込んだこと（部活・研究・バイトなど＝あなたの軸になるもの）
+・志望科と、その理由の芽
+・医師を志したきっかけ（原体験）
+・長所・短所（ざっくりでOK）
+・浪人・留年・研究・留学・学会発表など、経歴で触れておきたいこと
+・趣味・特技
+
+■ 出題する順番
+1. まず全病院で使い回せる【共通質問】（自己PR・長所短所・経験・キャリア観）
+2. 次に【医療・社会系トピック】
+3. 最後に【病院別】（志望理由・見学の印象・併願理由など）を病院ごとに
+
+■ トーン
+・敬語で、私を励ましながら。ダメ出しより「こうするともっと良くなる」の提案を。
+・医療・社会系トピックは、一般的な論点を踏まえつつ、私の意見として自然に言える形に整えてください。
+・個人情報（住所・氏名など）は無理に聞き出さず、必要なら「ここは本番で自分の情報を入れて」と印だけ残してください。
+
+■ 質問バンク（ここから出題してください）
+A. 自己紹介・自己PR：30秒／1分の自己PR、一言で言うとどんな人？、こだわり、キャッチコピー
+B. 長所・短所・人柄：長所、短所、短所の克服法、周りからどう言われる、自己評価と他者評価、苦手な人、自分に足りないところ、自分を動物／物に例えると、仲間内でのキャラ、どんな人と仲が良い、親友
+C. 経験・エピソード：学生時代に力を入れたこと、部活での役割、一番嬉しかった／辛かった／一生懸命だったこと、挫折とその乗り越え方、他者と衝突した経験、リーダーシップ経験、評価されなかった経験、失敗、影響を受けた人、尊敬する人物、座右の銘、印象に残る言葉、アルバイトと学び、ボランティア、趣味、特技、資格、英語、体力、宝物
+D. 医師・キャリア観：医師志望理由、志望科とその理由、理想の医師像、医師に大事なこと、医師に向いている点、プロフェッショナルとは、将来像／5〜10年後、将来のためにしていること、チーム医療での役割、多職種の捉え方、上級医と意見が食い違ったら、残業と自己研鑽の違い、医師でなければ何に、研究・留学への興味
+E. 医療・社会系：医師の地域偏在、診療科偏在、働き方改革、地域包括ケア、尊厳死と安楽死、認知症介護、医療とAI、医療保険制度、社会保障費、オンライン診療、ジェネリック、アフターピル、新専門医制度、命の選別（0歳と100歳）、女性医師のキャリア、医師余剰時代の生き残り、最近の医療ニュース
+F. 病院別（各病院ごと）：志望理由、見学の印象・魅力／特徴、病院の役割・地域での位置づけ、市中病院を選ぶ理由、併願病院とその中でここが良い点、後期研修・進路、採用するメリット、改善してほしい点・弱点、最後に一言
+G. 締め・その他：最近の一般ニュース、最近読んだ本、逆質問の準備、家族構成・健康状態など事務確認
+
+では、まず私の「土台情報」から、1つずつ聞いてください。</pre>
+    </div>
+    <p class="note">※ Webページ自体はAIを内蔵していません。「ここでコピー → 好きなAIに貼る」流れなので、どのAIでも同じように使えます。</p>
+
+    <hr class="rule">
+
+    <h2>聞かれる質問リスト（全カテゴリ）</h2>
+    <p class="lead" style="margin-bottom:20px">先輩の回答集の約200問を整理したもの。準備できた質問を消し込んでいくチェックリストとしても使えます。</p>
+
+    <details class="cat" open>
+      <summary><span class="tag">A</span>自己紹介・自己PR<span class="cnt">5問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>30秒で自己PR／1分で自己PR</li>
+        <li>一言で言うとあなたはどんな人？</li>
+        <li>あなたのこだわりは？</li>
+        <li>自分のキャッチコピーは？</li>
+      </ul>
+    </details>
+
+    <details class="cat">
+      <summary><span class="tag">B</span>長所・短所・人柄<span class="cnt">12問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>長所は？／短所は？／短所をどう克服した？</li>
+        <li>周りの人からどんな人だと言われる？</li>
+        <li>自己評価と他者評価の違いは？</li>
+        <li>苦手な人はいる？その人とどう接する？</li>
+        <li>自分に足りないと思うところは？</li>
+        <li>自分を動物／物に例えると？</li>
+        <li>仲間内での自分のキャラは？／どんな人と仲が良い？</li>
+        <li>親友はいる？どんな人？</li>
+      </ul>
+    </details>
+
+    <details class="cat">
+      <summary><span class="tag">C</span>経験・エピソード<span class="cnt">21問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>学生時代に最も力を入れたこと／部活・課外活動での役割</li>
+        <li>一番嬉しかった／辛かった／一生懸命だったこと</li>
+        <li>挫折経験とどう乗り越えたか</li>
+        <li>他者と衝突した経験</li>
+        <li>リーダーシップを発揮した経験</li>
+        <li>頑張っても評価されなかった経験／人生で失敗したこと</li>
+        <li>最も影響を受けた人／尊敬する人物とその理由</li>
+        <li>座右の銘／印象に残っている言葉</li>
+        <li>アルバイトと学んだこと／ボランティア経験</li>
+        <li>趣味／特技／資格／英語力／体力／宝物</li>
+      </ul>
+    </details>
+
+    <details class="cat">
+      <summary><span class="tag">D</span>医師・キャリア観<span class="cnt">15問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>医師志望理由／志望科とその理由</li>
+        <li>理想の医師像／医師に大事なこと／自分が医師に向いている点</li>
+        <li>プロフェッショナルとは？</li>
+        <li>医師としての将来像／5〜10年後のビジョン／将来のためにしていること</li>
+        <li>チーム医療での自分の役割／看護師など多職種の捉え方</li>
+        <li>上級医と意見が食い違ったらどうする？</li>
+        <li>残業と自己研鑽の違い／医師になっていなければ何に？</li>
+        <li>研究・留学に興味はあるか？</li>
+      </ul>
+    </details>
+
+    <details class="cat">
+      <summary><span class="tag">E</span>医療・社会系トピック<span class="cnt">17問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>医師の地域偏在の解消策／診療科の偏在</li>
+        <li>医師の働き方改革・長時間労働の解消</li>
+        <li>地域包括ケアシステムでの医師の役割</li>
+        <li>尊厳死と安楽死の違い・是非／認知症患者の介護</li>
+        <li>医療におけるAIとの共存</li>
+        <li>日本の医療保険制度の今後／社会保障費を下げるには</li>
+        <li>オンライン診療／ジェネリック／アフターピルの市販</li>
+        <li>新専門医制度／命の選別（0歳と100歳）</li>
+        <li>女性医師のキャリア・女性差別／医師が余る時代の生き残り</li>
+        <li>最近の医療ニュースと自分の意見</li>
+      </ul>
+    </details>
+
+    <details class="cat">
+      <summary><span class="tag">F</span>病院別（各病院ごとに）<span class="cnt">9問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>志望理由（なぜこの病院か）</li>
+        <li>見学の印象・この病院の魅力／特徴</li>
+        <li>この病院の役割・地域での位置づけ</li>
+        <li>大学病院でなく市中病院を選ぶ理由（該当時）</li>
+        <li>併願病院と、その中でここが良い点</li>
+        <li>後期研修はどうするか・進路／採用するメリット</li>
+        <li>改善してほしい点・弱点／最後に一言</li>
+      </ul>
+    </details>
+
+    <details class="cat">
+      <summary><span class="tag">G</span>締め・その他<span class="cnt">4問</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul>
+        <li>最近気になった一般ニュースと意見／最近読んだ本</li>
+        <li>逆質問（「何か質問はありますか？」への準備）</li>
+        <li>家族構成・健康状態などの事務確認</li>
+      </ul>
+    </details>
+
+    <footer>
+      <p class="big">頑張ってください。準備した数だけ、本番は落ち着けます。</p>
+      <p>このページはコピー用のプロンプトと質問リストをまとめたものです。回答の中身は、必ずあなた自身のエピソードで作ってください。</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  (function(){
+    var btn=document.getElementById('copyBtn');
+    var pre=document.getElementById('promptText');
+    btn.addEventListener('click',function(){
+      var text=pre.innerText;
+      var done=function(){
+        btn.textContent='コピーしました ✓';
+        btn.classList.add('done');
+        setTimeout(function(){btn.textContent='コピー';btn.classList.remove('done');},2000);
+      };
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){fallback(text,done);});
+      }else{fallback(text,done);}
+    });
+    function fallback(text,cb){
+      var ta=document.createElement('textarea');
+      ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');cb();}catch(e){}
+      document.body.removeChild(ta);
+    }
+  })();
+</script>
