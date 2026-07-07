@@ -14,7 +14,7 @@
 ## 使い方（友達に渡すとき）
 
 **方法1：URLを送る（一番かんたん）**
-共有Webページ（GitHub Pages）👉 https://hellowinners861.github.io/mensetsu/
+共有Webページ（GitHub Pages）👉 https://hellowinners861.github.io/Mensetsu/
 リンクを開いて「コピー」→ 好きなAIに貼るだけ。
 ※ このブランチへのプッシュで GitHub Actions（`.github/workflows/deploy-pages.yml`）が自動デプロイします。
 
